@@ -38,11 +38,11 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="mobile" class="col-md-4 col-form-label text-md-end">mobile</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
+                                <input id="mobile" type="" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
 
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
 
 
                         <div class="row mb-3">
@@ -79,6 +79,10 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
+                                </button>
+                            </div>
+                            <div class="col-md-6 ">
+                              <a href="{{URL('redirect/facebook')}}">Login With facebook</a>
                                 </button>
                             </div>
                         </div>

@@ -39,7 +39,11 @@ class LoginController extends Controller
     }
     // ده عباره عن function للي login بتباع mobile
 
-    // public function username(){
-    //     return 'mobile';
-    // }
+    public function username(){
+        $value = request()->input('identify');
+        $filed = filter_var($value, FILTER_VALIDATE_EMAIL) ?'email':'mobile';
+        request()->merge([$filed=>$value]);
+        return $filed;
+
+    }
 }

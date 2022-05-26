@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\CrudController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\second\SecondController;
+use App\Http\Controllers\SocialControoler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +65,17 @@ Route::get('about',function(){
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('redirect/{service}',[SocialControoler::class,'redirect']);
+Route::get('callback/{service}',[SocialControoler::class,'callback']);
+
+Route::get('fillable',[CrudController::class,'getoffer']);
+
+Route::group(['prefix'=>LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],function(){
+    // Route::get('store',[CrudController::class,'store']);
+    Route::group(['prefix'=>'offers' ],function(){
+        Route::get('create',[CrudController::class,'create']);
+          
+        Route::post('store',[CrudController::class,'store'])->name('offers.store');
+    }); 
+
+});
