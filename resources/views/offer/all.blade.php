@@ -43,65 +43,30 @@
             </div>
           </nav>
 
-       <div class="container">
-            <div class="text-center">
-                    <div class="title m-b-md">
-                       <h1> {{__('message.add your offer')}} </h1>
-                    </div> 
-            </div> 
-            @if (Session::has('success'))
-            <div class="alert alert-success" role="alert">
-                {{Session::get('success')}}
-              </div>
-              
-            @endif
-            <form method="POST" action="{{route('offers.store')}}">
-                @csrf
-                {{-- <input name="_token" value="{{csrf_token()}}"> ده معناها csrf  --}}
-                <div class="form-group">
-                  <label for="exampleInputEmail1">{{__('message.offer name ar')}}</label>
-                  <input type="text" class="form-control" name="name_ar" placeholder="{{__('message.name')}}">
-                  @error('name_ar')
-                  <small class="form-text text-danger">{{$message}}</small>
-                  @enderror
-              </div>
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">{{__('message.offer name en')}} </label>
-                    <input type="text" class="form-control" name="name_en" placeholder="{{__('message.name')}}">
-                    @error('name_en')
-                    <small class="form-text text-danger">{{$message}}</small>
-                    @enderror
-       
-                    </div>
-
-                    <div class="form-group">
-                    <label for="exampleInputPassword1">{{__('message.offer price')}} </label>
-                    <input type="text" class="form-control" name="price" placeholder="{{__('message.price')}}">
-                    @error('price')
-                    <small class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">{{__('message.offer details ar')}} </label>
-                        <input type="text" class="form-control" name="details_ar" placeholder="{{__('message.details')}}">
-                        @error('details_ar')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">{{__('message.offer details en')}} </label>
-                      <input type="text" class="form-control" name="details_en" placeholder="{{__('message.details')}}">
-                      @error('details_en')
-                      <small class="form-text text-danger">{{$message}}</small>
-                      @enderror
-                  </div>
-                
-                <button type="submit" class="btn btn-primary">{{__('message.save')}} </button>
-            </form> 
-
-
-       </div>  
+        
+<div class="container">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">{{__('message.offer name')}}</th>
+      <th scope="col">{{__('message.offer price')}}</th>
+      <th scope="col">{{__('message.offer details')}}</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach ($offers as $offer)
+      <tr>
+        <th scope="row">{{$offer -> id}}</th>
+        <td>{{$offer -> name}}</td>
+        <td>{{$offer -> price}}</td>
+        <td>{{$offer -> details}}</td>
+      </tr>
+      @endforeach
+   
+  
+  </tbody>
+</table>
+</div>
     </body>
 </html>

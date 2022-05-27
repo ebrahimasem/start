@@ -7,6 +7,7 @@ use App\Http\Controllers\second\SecondController;
 use App\Http\Controllers\SocialControoler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 /*
@@ -76,6 +77,7 @@ Route::group(['prefix'=>LaravelLocalization::setLocale(),'middleware' => [ 'loca
         Route::get('create',[CrudController::class,'create']);
           
         Route::post('store',[CrudController::class,'store'])->name('offers.store');
+        Route::get('all',[CrudController::class,'getAlls'])->name('offer.all');
     }); 
 
 });
